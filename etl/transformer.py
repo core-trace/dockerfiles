@@ -6,7 +6,9 @@ import pandas as pd
 from botocore.exceptions import ClientError
 
 
-BUCKET = "bucket-coretrace"
+import os
+
+BUCKET = os.getenv("S3_BUCKET", "bucket-coretrace")
 BRONZE = "raw/"
 SILVER = "trusted/"
 
