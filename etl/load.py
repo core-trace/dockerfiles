@@ -4,7 +4,9 @@ import io
 import time
 
 
-BUCKET = "bucket-coretrace"
+import os
+
+BUCKET = os.getenv("S3_BUCKET", "bucket-coretrace")
 SILVER = "trusted/"
 GOLD = "gold/"
 
