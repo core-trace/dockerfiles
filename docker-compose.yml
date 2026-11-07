@@ -1,0 +1,29 @@
+services:
+
+  etl:
+    build:
+      context: ./etl
+      dockerfile: Dockerfile
+    container_name: container-etl
+    restart: unless-stopped
+
+  java:
+    build:
+      context: ./java
+      dockerfile: Dockerfile
+    container_name: container-java
+    restart: unless-stopped
+
+  mysql:
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
+    container_name: container-mysql
+    restart: unless-stopped
+
+  node:
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+    container_name: container-node
+    restart: unless-stopped
