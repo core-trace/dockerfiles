@@ -6,13 +6,16 @@ services:
       dockerfile: Dockerfile
     container_name: container-etl
     restart: unless-stopped
+    image: mdtavares/core-trace:etl
+    
 
   java:
     build:
-      context: ./java
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: dockerfiles/java/Dockerfile
     container_name: container-java
     restart: unless-stopped
+    image: mdtavares/core-trace:java
 
   mysql:
     build:
@@ -20,10 +23,12 @@ services:
       dockerfile: Dockerfile
     container_name: container-mysql
     restart: unless-stopped
+    image: mdtavares/core-trace:mysql
 
   node:
     build:
-      context: ./node
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: dockerfiles/node/Dockerfile
     container_name: container-node
     restart: unless-stopped
+    image: mdtavares/core-trace:node
