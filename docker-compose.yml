@@ -7,7 +7,8 @@ services:
     container_name: container-etl
     restart: unless-stopped
     image: mdtavares/core-trace:etl
-    
+    env_file:
+      - .env
 
   java:
     build:
@@ -16,6 +17,12 @@ services:
     container_name: container-java
     restart: unless-stopped
     image: mdtavares/core-trace:java
+    env_file:
+      - ../api-java/.env
+    environment:
+      # Dentro da rede devemos usar o nome do serviço e nao localhost, essas linhas sobreescrevem o env
+      - WEBSITE_BASE_URL=http://node:3333
+      - DB_HOST=mysql
 
   mysql:
     build:
@@ -24,6 +31,8 @@ services:
     container_name: container-mysql
     restart: unless-stopped
     image: mdtavares/core-trace:mysql
+    env_file:
+      - .env
 
   node:
     build:
@@ -32,3 +41,8 @@ services:
     container_name: container-node
     restart: unless-stopped
     image: mdtavares/core-trace:node
+    env_file:
+      - ../website/.env.dev
+    environment:
+      # Chamar mysql e nao host
+      - DB_HOST=mysql
